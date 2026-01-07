@@ -8,7 +8,7 @@ class Tmd < Formula
   depends_on "node"
 
   def install
-    libexec.install Dir["package/*"]
+    libexec.install Dir["*"]
     (bin/"tmd").write <<~EOS
       #!/bin/bash
       exec "#{Formula["node"].opt_bin}/node" "#{libexec}/dist/cli/preprocess.js" "$@"
