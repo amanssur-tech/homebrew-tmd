@@ -9,7 +9,7 @@ class Tmd < Formula
 
   def install
     libexec.install Dir["*"]
-    bin.write_exec_script libexec/"dist/cli/preprocess.js"
+    bin.write_exec_script libexec/"dist/cli/preprocess.js", "tmd"
   end
 
   test do
