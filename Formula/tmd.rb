@@ -8,7 +8,10 @@ class Tmd < Formula
   depends_on "node"
 
   def install
-    libexec.install Dir["*"]
+    pkg_root = (buildpath/"package").directory? ? buildpath/"package" : buildpath
+    contents = Dir[pkg_root/"*"]
+    raise "No files found to install in #{pkg_root}" if contents.empty?
+    libexec.install contents
     (bin/"tmd").write <<~EOS
       #!/bin/bash
       exec "#{Formula["node"].opt_bin}/node" "#{libexec}/dist/cli/preprocess.js" "$@"
